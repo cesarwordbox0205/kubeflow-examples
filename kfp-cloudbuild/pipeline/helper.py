@@ -58,6 +58,7 @@ def deploy_pipeline(
  pipeline_name = PIPELINE_NAME+"-"+version
  print("The pipeline name is", pipeline_name)
 
+ print("Going to connect to client", HOST_URL, namespace) 
  client = kfp.Client(host=HOST_URL, namespace=namespace)
 
  pipeline = client.upload_pipeline(
