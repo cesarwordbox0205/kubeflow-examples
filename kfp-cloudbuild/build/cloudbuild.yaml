@@ -50,9 +50,8 @@ steps:
   id:  'Compile Pipeline'
 
 # Upload compiled pipeline to GCS
-- name: 'python:3.6-slim-jessie'
-  entrypoint: 'echo'
-  args: ['gs://${_GCS_LOCATION}/${_TAG}/']
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['cp', 'pipeline.tar.gz', 'settings.yaml', 'gs://${_GCS_LOCATION}/${_TAG}/']
   dir: 'kfp-cloudbuild/pipeline'
   id:   'Upload Pipeline to GCS'
 
