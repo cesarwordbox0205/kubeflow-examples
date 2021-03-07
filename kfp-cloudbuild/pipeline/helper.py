@@ -21,7 +21,7 @@ import fire
 from datetime import datetime
 
 SETTINGS_FILENAME = 'settings.yaml'
-HOST_URL = 'https://{}.endpoints.{}.cloud.goog/pipeline'
+HOST_URL = '7d7bd1724973ff3f-dot-us-central1.pipelines.googleusercontent.com'
 OUTPUT_PACKAGE_PATH = 'pipeline.tar.gz'
 NAMESPACE = 'kubeflow'
 EXPERIMENT_NAME = 'default-experiment'
@@ -58,7 +58,7 @@ def deploy_pipeline(
  pipeline_name = PIPELINE_NAME+"-"+version
  print("The pipeline name is", pipeline_name)
 
- client = kfp.Client(namespace=namespace)
+ client = kfp.Client(host=HOST_URL, namespace=namespace)
 
  pipeline = client.upload_pipeline(
    pipeline_package_path=kfp_package_path,
