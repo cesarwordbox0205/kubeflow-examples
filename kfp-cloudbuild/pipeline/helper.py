@@ -52,9 +52,11 @@ def read_settings():
 
 def deploy_pipeline(
   kfp_package_path, version, experiment_name, namespace, run):
+ print("Calling deploy pipeline", kfp_package_path, version, experiment_name, namespace, run)
  """Deploy and run the givne kfp_package_path."""
 
  pipeline_name = PIPELINE_NAME+"-"+version
+ print("The pipeline name is", pipeline_name)
 
  client = kfp.Client(namespace=namespace)
 
@@ -62,16 +64,19 @@ def deploy_pipeline(
    pipeline_package_path=kfp_package_path,
    pipeline_name=pipeline_name)
  pipeline_id = pipeline.id
+ print("The pipeline id is", pipeline_id, run)
 
  if run:
    run_id = 'run-' + datetime.now().strftime('%Y%m%d-%H%M%S')
    experiment = client.create_experiment(name=experiment_name)
    settings=read_settings()
+   print("The run id is", run_id)
    client.run_pipeline(
      experiment.id,
      job_name=run_id,
      pipeline_id=pipeline_id,
      params=settings)
+    print("Pipeline run...")
 
 
 def main(operation, **args):
