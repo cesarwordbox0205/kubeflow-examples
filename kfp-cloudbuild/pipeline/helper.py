@@ -76,7 +76,7 @@ def deploy_pipeline(
      job_name=run_id,
      pipeline_id=pipeline_id,
      params=settings)
-    print("Pipeline run...")
+   print("Pipeline run...")
 
 
 def main(operation, **args):
