@@ -49,6 +49,12 @@ steps:
   dir: 'kfp-cloudbuild'
   id:  'Compile Pipeline'
 
+# Upload compiled pipeline to GCS
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['echo', 'gs://${_GCS_LOCATION}/${_TAG}/']
+  dir: 'kfp-cloudbuild/pipeline'
+  id:   'Upload Pipeline to GCS'
+
 # Deploy pipeline in KFP
 - name: 'gcr.io/youtubelist-256522/kfp-util:latest'
   entrypoint: '/bin/sh'
